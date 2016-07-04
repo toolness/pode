@@ -99,9 +99,12 @@ WSGI_APPLICATION = 'pode_project.wsgi.application'
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': dj_database_url.config(),
 }
 
+# Disable migrations during tests.
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEST_MIGRATE
+DATABASES['default']['TEST'] = {'MIGRATE': False}
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
