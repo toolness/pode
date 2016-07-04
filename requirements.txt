@@ -1,5 +1,8 @@
 -r requirements.minimal.txt
 
+# Useful when running on Heroku.
+gunicorn==19.6.0
+
 # Only required if using Postgres as a backend.
 psycopg2==2.6.1
 
