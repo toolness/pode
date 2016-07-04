@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+{% load static from staticfiles %}
+<link rel="stylesheet" href="{% static 'vendor/skeleton/normalize.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/skeleton/skeleton.css' %}">
 <title>{{ title }}</title>
 <body>
-  <h1>{{ title }}</h1>
-  {% block content %}{% endblock %}
-  <nav>
-    <ul>
-      {% if user.is_authenticated %}
-        {% if user.is_staff %}
-        <li><a href="{% url 'admin:index' %}">Administration</a>
+  <div class="container">
+    <h1>{{ title }}</h1>
+    {% block content %}{% endblock %}
+  </div>
+  <div class="container">
+    <nav>
+      <ul>
+        {% if user.is_authenticated %}
+          {% if user.is_staff %}
+          <li><a href="{% url 'admin:index' %}">Administration</a>
+          {% endif %}
+          <li><a href="{% url 'github:logout' %}">Logout {{ user.username }}</a>
+        {% else %}
+          <li><a href="{% url 'github:login' %}">Login via GitHub</a>
         {% endif %}
-        <li><a href="{% url 'github:logout' %}">Logout {{ user.username }}</a>
-      {% else %}
-        <li><a href="{% url 'github:login' %}">Login via GitHub</a>
-      {% endif %}
-    </ul>
-  </nav>
+      </ul>
+    </nav>
+  </div>
 </body>
