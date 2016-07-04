@@ -1,12 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.utils.text import slugify
+
+
+class UserCodeManager(models.Manager):
+    def create_from_title(self, owner, title, max_attempts=9999):
+        base_slug = slugify(title)
+        slug = base_slug
+        i = 1
+
+        while self.filter(owner=owner, slug=slug).exists():
+            if i >= max_attempts:
+                raise AssertionError('Maximum attempts reached!')
+            i += 1
+            slug = "%s-%d" % (base_slug, i)
+
+        model = self.model(owner=owner, slug=slug)
+        model.save()
+        return model
 
 
 class UserCode(models.Model):
     '''
     Represents a piece of code that a user has written.
     '''
+
+    objects = UserCodeManager()
 
     created = models.DateTimeField(auto_now_add=True)
 

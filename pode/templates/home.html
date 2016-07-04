@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>Welcome to Pode, {{ user.username }}!</p>
+
+<p>Now that you are logged in, you may want to <a href="{% url 'pode:create_user_code' %}">create a new HTML page</a>.</p>
+{% else %}
+<p>
+  Pode is an experimental code editor for newcomers to programming who are
+  visually impaired.
+</p>
+<p>
+  To get started, <a href="{% url 'github:login' %}">log in via GitHub</a>.
+</p>
+{% endif %}
+{% endblock %}
