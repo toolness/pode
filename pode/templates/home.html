@@ -4,7 +4,18 @@
 {% if user.is_authenticated %}
 <p>Welcome to Pode, {{ user.username }}!</p>
 
-<p>Now that you are logged in, you may want to <a href="{% url 'pode:create_user_code' %}">create a new HTML page</a>.</p>
+{% if codes %}
+  <p>Below are the HTML pages you have created.</p>
+  <ul>
+  {% for code in codes %}
+    <li><a href="{{ code.get_absolute_url }}">{{ code.slug }}</a>
+  {% endfor %}
+  </ul>
+  <p>You can also <a href="{% url 'pode:create_user_code' %}">create a new HTML page</a>.</p>
+{% else %}
+  <p>Now that you are logged in, you may want to <a href="{% url 'pode:create_user_code' %}">create a new HTML page</a>.</p>
+{% endif %}
+
 {% else %}
 <p>
   Pode is an experimental code editor for newcomers to programming who are

@@ -9,8 +9,12 @@ from . import models, forms
 
 
 def home(request):
+    codes = []
+    if request.user.is_authenticated():
+        codes = models.UserCode.objects.filter(owner=request.user)
     return render(request, 'home.html', {
-        'title': 'Pode'
+        'title': 'Pode',
+        'codes': codes
     })
 
 
