@@ -1,7 +1,7 @@
-Django==1.10b1
-dj-database-url==0.4.1
-python-dotenv==0.5.1
-requests==2.10.0
-whitenoise==3.2
+-r requirements.minimal.txt
 
+# Only required if using Postgres as a backend.
+psycopg2==2.6.1
+
+# Useful for PEP-8 conformance.
 flake8==2.6.2
