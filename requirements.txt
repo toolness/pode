@@ -1,0 +1,5 @@
+Django==1.10b1
+dj-database-url==0.4.1
+python-dotenv==0.5.1
+
+flake8==2.6.2
