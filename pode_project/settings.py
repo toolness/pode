@@ -104,7 +104,8 @@ DATABASES = {
 
 # Disable migrations during tests.
 # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEST_MIGRATE
-DATABASES['default']['TEST'] = {'MIGRATE': False}
+if 'TEST_WITHOUT_MIGRATIONS' in os.environ:
+    DATABASES['default']['TEST'] = {'MIGRATE': False}
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators

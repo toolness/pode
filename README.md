@@ -50,6 +50,8 @@ string), the boolean is true; otherwise, it's false.
 
 * `GITHUB_CLIENT_SECRET` is the client secret of your GitHub app.
 
+* `TEST_WITHOUT_MIGRATIONS` is a boolean value that indicates whether to
+  disable migrations when running tests.
 
 [virtualenv]: https://virtualenv.pypa.io/en/stable/installation/
 [twelve-factor]: http://12factor.net/

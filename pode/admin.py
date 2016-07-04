@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from . import models
+
+
+class UserCodeAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(models.UserCode, UserCodeAdmin)
