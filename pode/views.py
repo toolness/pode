@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.template import loader
 
 from . import models, forms
@@ -33,7 +34,13 @@ def create_user_code(request):
             )
             code.content = loader.render_to_string(
                 'actual_user_code_templates/html.html',
-                {'title': title}
+                {
+                    'title': title,
+                    'username': request.user.username,
+                    'home_url': request.build_absolute_uri(
+                        reverse('pode:home')
+                    )
+                }
             )
             code.save()
             return HttpResponseRedirect(code.get_absolute_url())
