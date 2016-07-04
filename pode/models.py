@@ -32,3 +32,5 @@ class UserCode(models.Model):
 
     class Meta:
         verbose_name = 'User code asset'
+
+        unique_together = (('owner', 'slug'),)
