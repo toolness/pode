@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 
+
+# http://stackoverflow.com/a/13186337
+admin.site.login = login_required(admin.site.login)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

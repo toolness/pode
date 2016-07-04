@@ -146,6 +146,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # NOQA
 
+LOGIN_URL = 'github:login'
 LOGIN_REDIRECT_URL = 'pode:home'
 
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
