@@ -52,10 +52,16 @@ class UserCode(models.Model):
         return '%s/%s' % (self.owner.username, self.slug)
 
     def get_absolute_url(self):
-        return reverse('pode:user_code', kwargs={
+        return reverse('pode:edit_user_code', kwargs={
             'username': self.owner.username,
             'slug': self.slug
         })
+
+    def get_absolute_url_for_sharing(self, request):
+        return request.build_absolute_uri(reverse('pode:user_code', kwargs={
+            'username': self.owner.username,
+            'slug': self.slug
+        }))
 
     class Meta:
         verbose_name = 'User code asset'

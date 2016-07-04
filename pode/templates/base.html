@@ -3,6 +3,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'vendor/skeleton/normalize.css' %}">
 <link rel="stylesheet" href="{% static 'vendor/skeleton/skeleton.css' %}">
+{% block head %}{% endblock %}
 <title>{{ title }}</title>
 <body>
   <div class="container">
@@ -20,6 +21,7 @@
         {% else %}
           <li><a href="{% url 'github:login' %}">Login via GitHub</a>
         {% endif %}
+          <li><a href="{% url 'pode:home' %}">Home</a>
       </ul>
     </nav>
   </div>

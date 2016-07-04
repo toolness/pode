@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+form textarea {
+  width: 100%;
+  height: 20em;
+  font-family: monospace;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+{% if was_just_saved %}
+<p>Your changes have been saved and can be shared with the world at <a href="{{ share_url }}" target="share_{{ slug }}">{{ share_url }}</a>.</p>
+<p>You can continue making changes below if you like.</p>
+{% else %}
+<p>You are editing the HTML code for <code>{{ slug }}</code>.</p>
+{% endif %}
+
+<form action="{% url 'pode:edit_user_code' username=username slug=slug %}"
+      method="post"
+      spellcheck="false">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Submit">
+</form>
+
+{% if not was_just_saved %}
+<p>You can view and share your HTML page with the world at <a href="{{ share_url }}" target="share_{{ slug }}">{{ share_url }}</a>.</p>.
+{% endif %}
+
+{% endblock %}

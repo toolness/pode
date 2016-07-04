@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import UserCode
+
 
 class CreateUserCodeForm(forms.Form):
     title = forms.CharField(
@@ -8,3 +10,16 @@ class CreateUserCodeForm(forms.Form):
         max_length=40,
         required=True
     )
+
+
+class EditUserCodeForm(forms.ModelForm):
+    content = forms.CharField(
+        label='Code',
+        max_length=50000,
+        required=True,
+        widget=forms.Textarea
+    )
+
+    class Meta:
+        model = UserCode
+        fields = ['content']
