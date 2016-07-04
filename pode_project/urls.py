@@ -19,5 +19,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^auth/', include('github.urls', namespace='github'))
+    url(r'^auth/', include('github.urls', namespace='github')),
+    url(r'', include('pode.urls', namespace='pode')),
 ]

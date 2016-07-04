@@ -1,5 +1,6 @@
 from urllib.parse import urlencode
 import django.contrib.auth
+from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.crypto import get_random_string
@@ -28,6 +29,13 @@ def login(request):
         'state': request.session['oauth2_state'],
     })
     return HttpResponseRedirect(url)
+
+
+def logout(request):
+    django.contrib.auth.logout(request)
+    return render(request, 'logged_out.html', {
+        'title': 'Logged Out'
+    })
 
 
 def callback(request):

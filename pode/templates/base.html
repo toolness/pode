@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>{{ title }}</title>
+<body>
+  <h1>{{ title }}</h1>
+  {% block content %}{% endblock %}
+  <nav>
+    <ul>
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+        <li><a href="{% url 'admin:index' %}">Administration</a>
+        {% endif %}
+        <li><a href="{% url 'github:logout' %}">Logout {{ user.username }}</a>
+      {% else %}
+        <li><a href="{% url 'github:login' %}">Login via GitHub</a>
+      {% endif %}
+    </ul>
+  </nav>
+</body>
