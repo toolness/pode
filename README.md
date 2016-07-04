@@ -10,18 +10,19 @@ visually impaired.
 
 ## Quick Start
 
-```
-virtualenv venv
+1. Create a [GitHub app][].
+2. Copy `.env.sample` to `.env` and fill it out.
+3. Run the following in a terminal session:
 
-# On Windows, replace the following line with 'venv\Scripts\activate'.
-source venv/bin/activate
+   ```
+   virtualenv venv
 
-# On Windows, replace 'cp' with 'copy'.
-cp .env.sample .env
+   # On Windows, replace the following line with 'venv\Scripts\activate'.
+   source venv/bin/activate
 
-pip install -r requirements.txt
-python manage.py runserver
-```
+   pip install -r requirements.txt
+   python manage.py runserver
+   ```
 
 ## Environment Variables
 
@@ -45,8 +46,13 @@ string), the boolean is true; otherwise, it's false.
 * `DATABASE_URL` is the URL for the database, as per the
   [DJ-Database-URL schema][].
 
+* `GITHUB_CLIENT_ID` is the client ID of your GitHub app.
+
+* `GITHUB_CLIENT_SECRET` is the client secret of your GitHub app.
+
 
 [virtualenv]: https://virtualenv.pypa.io/en/stable/installation/
 [twelve-factor]: http://12factor.net/
 [`SECRET_KEY`]: https://docs.djangoproject.com/en/1.9/ref/settings/#secret-key
 [DJ-Database-URL schema]: https://github.com/kennethreitz/dj-database-url#url-schema
+[GitHub app]: https://github.com/settings/developers
