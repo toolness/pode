@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 
 
 class UserCode(models.Model):
+    '''
+    Represents a piece of code that a user has written.
+    '''
+
     created = models.DateTimeField(auto_now_add=True)
 
     modified = models.DateTimeField(auto_now=True)
@@ -25,3 +29,6 @@ class UserCode(models.Model):
 
     def __str__(self):
         return '%s/%s' % (self.owner.username, self.slug)
+
+    class Meta:
+        verbose_name = 'User code asset'
