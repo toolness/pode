@@ -8,12 +8,22 @@ SANDBOXED_VIEWS = []
 
 
 def sandboxed_user_code(func):
+    '''
+    Marks the given view function as returning untrusted user-generated
+    code that should be delivered on a separate origin (i.e., "sandboxed").
+    '''
+
     SANDBOXED_VIEWS.append(func)
 
     return func
 
 
 def sandboxed_user_code_middleware(get_response):
+    '''
+    Middleware to ensure that untrusted user-generated code is always
+    delivered on a separate origin from the rest of the application.
+    '''
+
     if not (settings.SANDBOXED_ORIGIN and settings.UNSANDBOXED_ORIGIN):
         raise MiddlewareNotUsed()
 
