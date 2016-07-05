@@ -20,9 +20,6 @@ def home(request):
 
 @middleware.sandboxed_user_code
 def user_code(request, username, slug):
-    # TODO: We *really* need to be serving this on a separate domain
-    # to prevent rampant XSS.
-
     code = get_object_or_404(
         models.UserCode,
         owner__username=username,

@@ -24,6 +24,17 @@ visually impaired.
    python manage.py runserver
    ```
 
+## Security
+
+Because this app allows users to write arbitrary, unsanitized web
+content, it needs to be served on a separate (i.e. "sandboxed") domain
+from the rest of the app.
+
+When running in production with `DEBUG` set to `False`, you will need to
+define the sandboxed and unsandboxed origins using `SANDBOXED_ORIGIN`
+and `UNSANDBOXED_ORIGIN`, respectively. See the [Environment Variables][]
+section for more details.
+
 ## Environment Variables
 
 Unlike traditional Django settings, we use environment variables
@@ -68,3 +79,4 @@ string), the boolean is true; otherwise, it's false.
 [`SECRET_KEY`]: https://docs.djangoproject.com/en/1.9/ref/settings/#secret-key
 [DJ-Database-URL schema]: https://github.com/kennethreitz/dj-database-url#url-schema
 [GitHub app]: https://github.com/settings/developers
+[Environment Variables]: #environment-variables
