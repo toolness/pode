@@ -14,6 +14,9 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 
+from . import settings_utils
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,6 +47,11 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 ALLOWED_HOSTS = ['*']
 
+
+if 'SECURE_PROXY_SSL_HEADER' in os.environ:
+    SECURE_PROXY_SSL_HEADER = settings_utils.parse_secure_proxy_ssl_header(
+        os.environ['SECURE_PROXY_SSL_HEADER']
+    )
 
 # Application definition
 

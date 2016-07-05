@@ -56,6 +56,10 @@ string), the boolean is true; otherwise, it's false.
 * `UNSANDBOXED_ORIGIN` is the origin on which to serve trusted
   application content.
 
+* `SECURE_PROXY_SSL_HEADER` is an optional HTTP request header field name
+  and value indicating that the request is actually secure. For example,
+  Heroku deployments should set this to `X-Forwarded-Proto: https`.
+
 * `TEST_WITHOUT_MIGRATIONS` is a boolean value that indicates whether to
   disable migrations when running tests.
 
