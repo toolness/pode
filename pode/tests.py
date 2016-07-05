@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 
 from .models import UserCode
+from . import middleware
 
 
 class ModelTests(TestCase):
@@ -13,6 +14,14 @@ class ModelTests(TestCase):
 
         code2 = UserCode.objects.create_from_title(user, 'Boop')
         self.assertEqual(code2.slug, 'boop-2')
+
+
+class MiddlewareTests(TestCase):
+    def test_get_request_origin_works(self):
+        factory = RequestFactory()
+        request = factory.get('/foo/bar/')
+        self.assertEqual(middleware.get_request_origin(request),
+                         'http://testserver')
 
 
 class ViewTests(TestCase):
