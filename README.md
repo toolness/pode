@@ -50,6 +50,12 @@ string), the boolean is true; otherwise, it's false.
 
 * `GITHUB_CLIENT_SECRET` is the client secret of your GitHub app.
 
+* `SANDBOXED_ORIGIN` is the origin on which to serve untrusted
+  user-generated content.
+
+* `UNSANDBOXED_ORIGIN` is the origin on which to serve trusted
+  application content.
+
 * `TEST_WITHOUT_MIGRATIONS` is a boolean value that indicates whether to
   disable migrations when running tests.
 

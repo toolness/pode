@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.template import loader
 
-from . import models, forms
+from . import models, forms, middleware
 
 
 def home(request):
@@ -18,6 +18,7 @@ def home(request):
     })
 
 
+@middleware.sandboxed_user_code
 def user_code(request, username, slug):
     # TODO: We *really* need to be serving this on a separate domain
     # to prevent rampant XSS.

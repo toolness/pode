@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'pode.middleware.sandboxed_user_code_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -155,3 +156,12 @@ LOGIN_REDIRECT_URL = 'pode:home'
 
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
 GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
+
+SANDBOXED_ORIGIN = os.environ.get('SANDBOXED_ORIGIN')
+UNSANDBOXED_ORIGIN = os.environ.get('UNSANDBOXED_ORIGIN')
+
+if not DEBUG:
+    if not SANDBOXED_ORIGIN:
+        raise Exception('SANDBOXED_ORIGIN must be defined')
+    if not UNSANDBOXED_ORIGIN:
+        raise Exception('UNSANDBOXED_ORIGIN must be defined')
