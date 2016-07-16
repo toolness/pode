@@ -1,0 +1,42 @@
+nav ul {
+  list-style-type: none;
+  text-align: right;
+  border-top: 1px dotted gray;
+  margin-bottom: 0;
+}
+
+nav ul li {
+  padding: 1em;
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+nav ul li:last-child {
+  padding-right: 0;
+}
+
+nav a {
+  color: black;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.sr-only {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
