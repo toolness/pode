@@ -86,6 +86,6 @@ def edit_user_code(request, username, slug):
         'form': form,
         'username': username,
         'slug': slug,
-        'share_url': code.get_absolute_url_for_sharing(request),
+        'code': code,
         'was_just_saved': was_just_saved
     })

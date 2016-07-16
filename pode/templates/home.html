@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load pode %}
 
 {% block content %}
 {% if user.is_authenticated %}
@@ -11,6 +12,7 @@
     <li>
       <code>{{ code.slug }}</code>
       <a href="{{ code.get_absolute_url }}" class="button">Edit <span class="sr-only">{{ code.slug }}</span></a>
+      <a href="{% code_share_url code %}" class="button">View <span class="sr-only">{{ code.slug }}</span></a>
     </li>
   {% endfor %}
   </ul>

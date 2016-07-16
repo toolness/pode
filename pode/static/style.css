@@ -18,6 +18,14 @@ ul.pages li code {
   flex-grow: 1;
 }
 
+ul.pages li a {
+  margin-right: 10px;
+}
+
+ul.pages li a:last-child {
+  margin-right: 0;
+}
+
 nav ul {
   list-style-type: none;
   text-align: right;
