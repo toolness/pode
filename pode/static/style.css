@@ -1,3 +1,23 @@
+ul.pages {
+  list-style-type: none;
+}
+
+ul.pages li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+ul.pages li:last-child {
+  border-bottom: none;
+}
+
+ul.pages li code {
+  background: inherit;
+  border: none;
+  flex-grow: 1;
+}
+
 nav ul {
   list-style-type: none;
   text-align: right;

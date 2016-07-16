@@ -6,9 +6,12 @@
 
 {% if codes %}
   <p>Below are the HTML pages you have created.</p>
-  <ul>
+  <ul class="pages">
   {% for code in codes %}
-    <li><a href="{{ code.get_absolute_url }}">{{ code.slug }}</a>
+    <li>
+      <code>{{ code.slug }}</code>
+      <a href="{{ code.get_absolute_url }}" class="button">Edit <span class="sr-only">{{ code.slug }}</span></a>
+    </li>
   {% endfor %}
   </ul>
   <p>You can also <a href="{% url 'pode:create_user_code' %}">create a new HTML page</a>.</p>
