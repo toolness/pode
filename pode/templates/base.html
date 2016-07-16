@@ -3,14 +3,49 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'vendor/skeleton/normalize.css' %}">
 <link rel="stylesheet" href="{% static 'vendor/skeleton/skeleton.css' %}">
+<style>
+nav ul {
+  list-style-type: none;
+  text-align: right;
+  border-top: 1px dotted gray;
+  margin-bottom: 0;
+}
+
+nav ul li {
+  padding: 1em;
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+nav ul li:last-child {
+  padding-right: 0;
+}
+
+nav a {
+  color: black;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+</style>
 {% block head %}{% endblock %}
 <title>{{ title }}</title>
 <body>
-  <div class="container">
+  <main class="container">
     <h1>{{ title }}</h1>
     {% block content %}{% endblock %}
-  </div>
-  <div class="container">
+  </main>
+  <footer class="container">
     <nav>
       <ul>
         {% if user.is_authenticated %}
@@ -21,8 +56,8 @@
         {% else %}
           <li><a href="{% url 'github:login' %}">Login via GitHub</a>
         {% endif %}
-          <li><a href="{% url 'pode:home' %}">Home</a>
+          <li><a href="{% url 'pode:home' %}">Pode Home</a>
       </ul>
     </nav>
-  </div>
+  </footer>
 </body>
