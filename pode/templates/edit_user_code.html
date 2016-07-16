@@ -12,8 +12,7 @@ form textarea {
 
 {% block content %}
 {% if was_just_saved %}
-<p>Your changes have been saved. <a href="{{ share_url }}" target="share_{{ slug }}">View and share your page at {{ share_url }}.</a></p>
-<p>You can continue making changes below if you like.</p>
+<p>Your changes have been saved. You can continue making changes below if you like.</p>
 {% else %}
 <p>You are editing the HTML code for <code>{{ slug }}</code>.</p>
 {% endif %}
@@ -26,6 +25,6 @@ form textarea {
   <input type="submit" value="Save Changes">
 </form>
 
-<p {% if was_just_saved %}class="sr-only"{% endif %}><a href="{{ share_url }}" target="share_{{ slug }}">View and share your page at {{ share_url }}.</a></p>.
+<a href="{{ share_url }}" target="share_{{ slug }}" class="button">View Page</a>
 
 {% endblock %}
