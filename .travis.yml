@@ -3,6 +3,8 @@ python:
   - "3.5"
 env:
   - DEBUG=yup
+  - GITHUB_CLIENT_ID=fake
+  - GITHUB_CLIENT_SECRET=fake
 install:
   - pip install -r requirements.minimal.txt
 script:
