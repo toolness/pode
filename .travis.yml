@@ -1,6 +1,8 @@
 language: python
 python:
   - "3.5"
+env:
+  - DEBUG=yup
 install:
   - pip install -r requirements.minimal.txt
 script:
