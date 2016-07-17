@@ -5,6 +5,9 @@ $(function() {
   var textarea = $('form textarea')[0];
   var speechSupported = 'speechSynthesis' in window;
 
+  var KEY_H = 72;
+  var KEY_S = 83;
+
   function say(msg) {
     var msg;
 
@@ -126,7 +129,7 @@ $(function() {
   $(document).keydown(function(e) {
     var index, help, syntaxHelp;
 
-    if (e.key == 'h' && e.ctrlKey) {
+    if (e.which == KEY_H && e.ctrlKey) {
       e.preventDefault();
 
       index = textarea.selectionStart;
@@ -140,7 +143,7 @@ $(function() {
       help += '.';
 
       showHelp(help);
-    } else if (e.key ==  's' && e.ctrlKey) {
+    } else if (e.which == KEY_S && e.ctrlKey) {
       e.preventDefault();
 
       save();
