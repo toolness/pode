@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.test import TestCase, RequestFactory
+from django.test import TestCase, RequestFactory, override_settings
 
 from .models import UserCode
 from . import middleware
@@ -24,6 +24,10 @@ class MiddlewareTests(TestCase):
                          'http://testserver')
 
 
+@override_settings(
+    SANDBOXED_ORIGIN=None,
+    UNSANDBOXED_ORIGIN=None
+)
 class ViewTests(TestCase):
     def test_home_has_login_link_when_logged_out(self):
         res = self.client.get('/')
