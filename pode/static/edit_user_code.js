@@ -76,6 +76,42 @@ $(function() {
     return descend(result.document);
   }
 
+  function save() {
+    var form = $('form')[0];
+    var req = new XMLHttpRequest();
+    var data;
+
+    function fail(msg) {
+      msg = msg || '';
+
+      alert("An error occurred when trying to save your code! " + msg);
+    }
+
+    if (!('FormData' in window)) {
+      return fail('Your browser does not support this functionality.');
+    }
+
+    // TODO: We should somehow indicate to the server that this is
+    // coming from an Ajax request; it should change its response code to
+    // be 400 if anything about the request is amiss.
+
+    data = new FormData(form);
+    req.open(form.method, form.action);
+    req.onload = function() {
+      if (req.status === 200) {
+        showHelp("Your code has been saved" +
+                 (Date.prototype.toLocaleTimeString
+                  ? ' at ' + (new Date()).toLocaleTimeString() : '') + '.');
+      } else {
+        fail("Got HTTP " + req.status + " from the server.");
+      }
+    };
+    req.onerror = function() {
+      fail();
+    };
+    req.send(data);
+  }
+
   if (speechSupported) {
     // This browser supports the Web Speech API, which is going to be
     // a lot more reliable than the screen reader's intepretation of
@@ -104,6 +140,10 @@ $(function() {
       help += '.';
 
       showHelp(help);
+    } else if (e.key ==  's' && e.ctrlKey) {
+      e.preventDefault();
+
+      save();
     }
   });
 });
