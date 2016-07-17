@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/toolness/pode.svg?branch=master)](https://travis-ci.org/toolness/pode)
+
 This is an attempt at building a code editor for beginners who are
 visually impaired.
 
