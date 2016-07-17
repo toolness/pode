@@ -28,11 +28,10 @@ form textarea {
       spellcheck="false">
   {% csrf_token %}
   {{ form.as_p }}
-  <p>
+  <p class="help" role="alert" aria-live="polite">
     While editing your code, press <kbd>Ctrl</kbd> + <kbd>H</kbd> for
-    context-sensitive help on your current position.
+    context-sensitive help on your current position.    
   </p>
-  <p class="help" role="alert" aria-live="polite"></p>
   <input type="submit" value="Save Changes">
 </form>
 
