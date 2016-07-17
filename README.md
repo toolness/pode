@@ -3,10 +3,8 @@ visually impaired.
 
 ## Requirements
 
-```
 * Python 3.5
 * [virtualenv][]
-```
 
 ## Quick Start
 
