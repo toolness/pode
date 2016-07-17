@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load pode %}
+{% load static %}
 
 {% block head %}
 <style>
@@ -7,6 +8,10 @@ form textarea {
   width: 100%;
   height: 20em;
   font-family: monospace;
+}
+
+.help {
+  color: darkgray;
 }
 </style>
 {% endblock %}
@@ -23,9 +28,19 @@ form textarea {
       spellcheck="false">
   {% csrf_token %}
   {{ form.as_p }}
+  <p>
+    While editing your code, press <kbd>Ctrl</kbd> + <kbd>H</kbd> for
+    context-sensitive help on your current position.
+  </p>
+  <p class="help" role="alert" aria-live="polite"></p>
   <input type="submit" value="Save Changes">
 </form>
 
 <a href="{% code_share_url code %}" class="button">View Page</a>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'vendor/jquery-3.1.0.js' %}"></script>
+<script src="{% static 'edit_user_code.js' %}"></script>
 {% endblock %}
