@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import os
+import sys
 import dj_database_url
+import dj_email_url
 from dotenv import load_dotenv
 
 from . import settings_utils
@@ -39,6 +41,7 @@ if DEBUG:
         'DATABASE_URL',
         'sqlite:///%s' % os.path.join(BASE_DIR, 'db.sqlite3')
     )
+    os.environ.setdefault('EMAIL_URL', 'console:')
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -158,6 +161,34 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # NOQA
+
+vars().update(dj_email_url.config())
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR'
+        }
+    }
+}
+
+if 'ADMIN_EMAIL' in os.environ:
+    ADMINS = (('Administrator', os.environ['ADMIN_EMAIL']),)
+    LOGGING['loggers']['django']['handlers'].append('mail_admins')
 
 LOGIN_URL = 'github:login'
 LOGIN_REDIRECT_URL = 'pode:home'

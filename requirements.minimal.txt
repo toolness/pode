@@ -3,3 +3,4 @@ dj-database-url==0.4.1
 python-dotenv==0.5.1
 requests==2.10.0
 whitenoise==3.2
+dj-email-url==0.0.8

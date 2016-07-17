@@ -15,14 +15,27 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 # http://stackoverflow.com/a/13186337
 admin.site.login = login_required(admin.site.login)
 
+
+@user_passes_test(lambda u: u.is_superuser)
+def throw_error_to_manually_test_logging(request):
+    '''
+    Because Django's logging configuration is the most confusing thing
+    I have ever used, we'll use this endpoint to manually ensure that
+    logging works.
+    '''
+
+    this_nonexistent_function_is_being_called_to_test_django_error_logging()
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('github.urls', namespace='github')),
+    url(r'^500$', throw_error_to_manually_test_logging),
     url(r'', include('pode.urls', namespace='pode')),
 ]

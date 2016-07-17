@@ -74,9 +74,17 @@ string), the boolean is true; otherwise, it's false.
 * `TEST_WITHOUT_MIGRATIONS` is a boolean value that indicates whether to
   disable migrations when running tests.
 
+* `EMAIL_URL` is the URL for the email backend. For more details, see the
+  documentation on the [email URL schema][]. When `DEBUG` is set to true,
+  it defaults to `console:`.
+
+* `ADMIN_EMAIL` is the email address to send error reports to in
+  production. If undefined, error reports will not be emailed.
+
 [virtualenv]: https://virtualenv.pypa.io/en/stable/installation/
 [twelve-factor]: http://12factor.net/
 [`SECRET_KEY`]: https://docs.djangoproject.com/en/1.9/ref/settings/#secret-key
 [DJ-Database-URL schema]: https://github.com/kennethreitz/dj-database-url#url-schema
 [GitHub app]: https://github.com/settings/developers
 [Environment Variables]: #environment-variables
+[email URL schema]: https://pypi.python.org/pypi/dj-email-url/
