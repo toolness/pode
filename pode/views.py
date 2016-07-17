@@ -66,7 +66,7 @@ def edit_user_code(request, username, slug):
         owner__username=username,
         slug=slug
     )
-    if code.owner != request.user and not code.is_staff:
+    if code.owner != request.user and not request.user.is_superuser:
         return HttpResponseForbidden()
 
     was_just_saved = False
