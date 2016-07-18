@@ -2,7 +2,8 @@
 
 $(function() {
   var $help = $('.help');
-  var textarea = $('form textarea')[0];
+  var $form = $('form');
+  var textarea = $('textarea', $form)[0];
   var speechSupported = 'speechSynthesis' in window;
   var canSubmitViaAjax = 'FormData' in window;
 
@@ -81,7 +82,7 @@ $(function() {
   }
 
   function save() {
-    var form = $('form')[0];
+    var form = $form[0];
     var req = new XMLHttpRequest();
     var data;
 
@@ -89,10 +90,6 @@ $(function() {
       msg = msg || '';
 
       alert("An error occurred when trying to save your code! " + msg);
-    }
-
-    if (!canSubmitViaAjax) {
-      return fail('Your browser does not support this functionality.');
     }
 
     // TODO: We should somehow indicate to the server that this is
@@ -125,7 +122,7 @@ $(function() {
       .attr('aria-hidden', 'true');
   }
 
-  $('form').submit(function(e) {
+  $form.submit(function(e) {
     if (canSubmitViaAjax) {
       save();
       e.preventDefault();
@@ -152,7 +149,7 @@ $(function() {
     } else if (e.which == KEY_S && e.ctrlKey) {
       e.preventDefault();
 
-      save();
+      $form.submit();
     }
   });
 });
