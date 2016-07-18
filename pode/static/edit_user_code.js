@@ -102,9 +102,7 @@ $(function() {
     req.open(form.method, form.action);
     req.onload = function() {
       if (req.status === 200) {
-        showHelp("Your code has been saved" +
-                 (Date.prototype.toLocaleTimeString
-                  ? ' at ' + (new Date()).toLocaleTimeString() : '') + '.');
+        showHelp("Your code has been saved.");
       } else {
         fail("Got HTTP " + req.status + " from the server.");
       }
