@@ -4,6 +4,7 @@ $(function() {
   var $help = $('.help');
   var textarea = $('form textarea')[0];
   var speechSupported = 'speechSynthesis' in window;
+  var canSubmitViaAjax = 'FormData' in window;
 
   var KEY_H = 72;
   var KEY_S = 83;
@@ -90,7 +91,7 @@ $(function() {
       alert("An error occurred when trying to save your code! " + msg);
     }
 
-    if (!('FormData' in window)) {
+    if (!canSubmitViaAjax) {
       return fail('Your browser does not support this functionality.');
     }
 
@@ -123,6 +124,13 @@ $(function() {
       .removeAttr('aria-live')
       .attr('aria-hidden', 'true');
   }
+
+  $('form').submit(function(e) {
+    if (canSubmitViaAjax) {
+      save();
+      e.preventDefault();
+    }
+  });
 
   $(document).keydown(function(e) {
     var index, help, syntaxHelp;
