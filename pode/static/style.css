@@ -57,7 +57,8 @@ body {
 }
 
 main {
-  flex: 1;
+  /* https://github.com/philipwalton/flexbugs#1-minimum-content-sizing-of-flex-items-not-honored */
+  flex: 1 0 auto;
 }
 
 .sr-only {
