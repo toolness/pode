@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.safestring import mark_safe
 
 from .models import UserCode
 
@@ -14,7 +15,7 @@ class CreateUserCodeForm(forms.Form):
 
 class EditUserCodeForm(forms.ModelForm):
     content = forms.CharField(
-        label='Code',
+        label=mark_safe('<span role="heading" aria-level="2">Code</span>'),
         max_length=50000,
         required=True,
         widget=forms.Textarea
