@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.urls import resolve
 from django.test import TestCase, RequestFactory, override_settings
 
 from .models import UserCode
@@ -29,6 +30,22 @@ class MiddlewareTests(TestCase):
     UNSANDBOXED_ORIGIN=None
 )
 class ViewTests(TestCase):
+    def test_user_code_can_contain_hyphens_and_underscores(self):
+        match = resolve('/blerg/hi-ther_e')
+        self.assertEqual(match.url_name, 'user_code')
+        self.assertEqual(match.kwargs, {
+            'username': 'blerg',
+            'slug': 'hi-ther_e',
+        })
+
+    def test_edit_user_code_can_contain_hyphens_and_underscores(self):
+        match = resolve('/blerg/hi-ther_e/edit')
+        self.assertEqual(match.url_name, 'edit_user_code')
+        self.assertEqual(match.kwargs, {
+            'username': 'blerg',
+            'slug': 'hi-ther_e',
+        })
+
     def test_home_has_login_link_when_logged_out(self):
         res = self.client.get('/')
         self.assertContains(res, 'Login via GitHub')
