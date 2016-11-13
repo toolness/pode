@@ -8,6 +8,7 @@ $(function() {
   var speechSupported = 'speechSynthesis' in window;
   var canPlayAudio = canPlayMP3();
   var canSubmitViaAjax = 'FormData' in window;
+  var lastSavedData = textarea.value;
 
   var KEY_H = 72;
   var KEY_S = 83;
@@ -107,6 +108,7 @@ $(function() {
 
   function save() {
     var form = $form[0];
+    var dataToSave = textarea.value;
     var req = new XMLHttpRequest();
     var data;
 
@@ -127,6 +129,7 @@ $(function() {
       if (req.status === 200) {
         stopSaveAudio();
         showHelp("Your code has been saved.");
+        lastSavedData = dataToSave;
       } else {
         fail("Got HTTP " + req.status + " from the server.");
       }
@@ -154,6 +157,14 @@ $(function() {
       save();
       e.preventDefault();
     }
+  });
+
+  $(window).on('beforeunload', function() {
+    if (textarea.value === lastSavedData) {
+      return undefined;
+    }
+
+    return "Are you sure you want to leave without saving?";
   });
 
   $(document).keydown(function(e) {
